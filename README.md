@@ -9,4 +9,4 @@ Untuk sementara algoritma yang tersedia adalah
 Recana algoritma yang akan ditambahkan
 - DES
 
-### Pertama kali membuat project di PyCharm, mohon maaf jika ada kesalahan struktur project
+Program ini ditulis menggunakan bahasa pemrograman Python dan menggunakan IDE PyCharm
