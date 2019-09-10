@@ -1,7 +1,7 @@
 
 class TransposeCipher:
     space = None
-    plaintext = None
+    text = None
     key = None
     col = None
     row = None
@@ -10,23 +10,31 @@ class TransposeCipher:
     num = 0
     result = ""
 
-    def __init__(self, plaintext, key):
-        self.space = " " * key
-        self.plaintext = plaintext
+    def __init__(self, text, key):
+        # insert text dan key terlebih dahulu
+        self.text = text
         self.key = key
+
+        # tentukan kolom dan rownya
         self.col = key
-        self.row = len(plaintext) / key
-        if len(self.plaintext) % self.key != 0:
+        self.row = len(text) / key
+        # check apakah row kurang untuk menampung jumlah text
+        if len(self.text) % self.key != 0:
             self.row += 1
 
         self.rowFinal = int(self.row)
+
+        # dibuat matrixnya
         self.Matrix = [[' ' for x in range(self.col)] for y in range(self.rowFinal)]
-        self.plaintext += self.space
+
+        # membuat dan menambahkan spasi
+        self.space = " " * key
+        self.text += self.space
 
     def encrypt(self):
         for i in range(self.rowFinal):
             for j in range(self.col):
-                self.Matrix[i][j] = self.plaintext[self.num]
+                self.Matrix[i][j] = self.text[self.num]
                 self.num +=1
 
         print (self.Matrix)
@@ -40,7 +48,7 @@ class TransposeCipher:
     def decrypt(self):
         for i in range(self.col):
             for j in range(self.rowFinal):
-                self.Matrix[j][i] = self.plaintext[self.num]
+                self.Matrix[j][i] = self.text[self.num]
                 self.num +=1
 
         print (self.Matrix)
@@ -53,5 +61,5 @@ class TransposeCipher:
 
 
 if __name__ == "__main__":
-    a = TransposeCipher("yaaotnnh", 3)
-    print(a.decrypt())
+    a = TransposeCipher("yonathana", 4)
+    print(a.encrypt())

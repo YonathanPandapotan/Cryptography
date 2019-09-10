@@ -1,58 +1,64 @@
 class VigenereCipher:
-    alphabets = "abcdefghijklmnopqrstuvwxyz"  # this is the english letters
+    alphabets = "abcdefghijklmnopqrstuvwxyz"
     text = None
     keyInput = None
     mode = None
-    cipher = None
+    result = None
 
-    def __init__(self, text, keyInput, cipher):
+    def __init__(self, text, keyInput):
+        # masukkan nilai pesan yang ingin di ubah dan nilai key-nya
         self.text = text
         self.keyInput = keyInput
-        self.cipher = cipher
 
     def encrypt(self):
-        self.cipher = ""
-        kpos = []  # return the index of characters ex: if k='d' then kpos= 3
+        self.result = ""
+        kpos = []
+
+        # Mendapatkan nilai angka pada key
         for x in self.keyInput:
-            # kpos += alphabets.find(x) #change the int value to string
+            kpos.append(self.alphabets.find(x))
+
+        # Variable i disini akan menjadi patokan key mana yang akan digunakan per karakter
+        i = 0
+
+        for x in str(self.text):
+            # Jika karakter bukan merupakan huruf maka langsung tambahkan ke hasil
+            if x.isalpha():
+
+                # Jika value i sama dengan panjang key, maka kembalikan nilai i jadi 0
+                if i == len(kpos):
+                    i = 0
+
+                pos = self.alphabets.find(x) + kpos[i]
+                if pos > 25:
+                    pos = pos - 26
+                self.result += self.alphabets[pos].capitalize()
+                i += 1
+            else:
+                self.result += x
+        print(self.result)
+
+    def decrypt(self):
+        self.result = ""
+        kpos = []
+        for x in self.keyInput:
             kpos.append(self.alphabets.find(x))
         i = 0
         for x in str(self.text):
             if x.isalpha():
                 if i == len(kpos):
                     i = 0
-                pos = self.alphabets.find(x) + kpos[
-                    i]  # find the number or index of the character and perform the shift with the key
-                # print(pos) there is no need for this to be shown
-                if pos > 25:
-                    pos = pos - 26  # check you exceed the limit
-                self.cipher += self.alphabets[pos].capitalize()  # because the cipher text always capital letters
-                i += 1
-            else:
-                self.cipher += x
-        print(self.cipher)
-
-    def decrypt(self):
-        self.text = ""
-        kpos = []
-        for x in self.keyInput:
-            kpos.append(self.alphabets.find(x))
-        i = 0
-        for x in str(self.cipher):
-            if x.isalpha():
-                if i == len(kpos):
-                    i = 0
                 pos = self.alphabets.find(x.lower()) - kpos[i]
                 if pos < 0:
                     pos = pos + 26
-                self.text += self.alphabets[pos].lower()
+                self.result += self.alphabets[pos].lower()
                 i += 1
             else:
-                self.text += x
+                self.result += x
 
-        print(self.text)
+        print(self.result)
 
 
 if __name__ == "__main__":
-    text = VigenereCipher("" , "asd", "YGQALKAF")
-    text.decrypt()
+    text = VigenereCipher("yonathan" , "asd")
+    text.encrypt()
