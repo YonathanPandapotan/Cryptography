@@ -61,5 +61,5 @@ class TransposeCipher:
 
 
 if __name__ == "__main__":
-    a = TransposeCipher("yonathana", 4)
-    print(a.encrypt())
+    a = TransposeCipher("ags d f ", 4)
+    print(a.decrypt())
