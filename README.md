@@ -5,8 +5,7 @@ Untuk sementara algoritma yang tersedia adalah
 - Vigenere Encrypt
 - Transpose Encrypt
 - RSA
-
-Recana algoritma yang akan ditambahkan
 - DES
+- AES
 
 Program ini ditulis menggunakan bahasa pemrograman Python dan menggunakan IDE PyCharm
